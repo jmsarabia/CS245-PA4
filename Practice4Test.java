@@ -26,7 +26,15 @@ public class Practice4Test {
 	
 	public boolean isPalindrome(String item) {
 		clearData();
+		//item = item.toLowerCase();
 		for (int i = 0; i < item.length(); i++) {
+			item = item.toLowerCase();
+			if(item.contains(" ") || item.contains("!") || item.contains("."))
+			{
+				item = item.replace(" ", "");
+				item = item.replace("!", "");
+				item = item.replace(".", "");
+			}
 			stack.push(item.substring(i, i+1));
 			queue.enqueue(item.substring(i, i+1));
 		}
@@ -84,7 +92,9 @@ public class Practice4Test {
 			}
 			boolean emptiedEarly = false;
 			for (int i = 0; i < size_of_test; i++) {
-				if ( queue.empty() || stack.empty()) {
+				/*System.out.println("Queue:" + queue.empty());
+				System.out.println("Stack:" + stack.empty());
+				*/if ( queue.empty() || stack.empty()) {
 					emptiedEarly = true;
 				}
 				queue.dequeue();
